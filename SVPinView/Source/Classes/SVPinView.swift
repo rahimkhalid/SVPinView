@@ -271,10 +271,11 @@ public class SVPinView: UIView {
     
     @objc
     public func makePinViewActive() {
-        if password.count == pinLength {
+        var passwordString = password.joined(separator: "")
+        if passwordString.count == pinLength {
             textFields.last?.becomeFirstResponder()
         } else {
-            textFields[password.count].becomeFirstResponder()
+            textFields[passwordString.count].becomeFirstResponder()
         }
         
     }
