@@ -322,6 +322,7 @@ extension SVPinView : UICollectionViewDataSource, UICollectionViewDelegate, UICo
             textField.becomeFirstResponder()
         }
         
+        textFields.insert(textField, at: indexPath.row)
         // Finished loading pinView
         if indexPath.row == pinLength - 1 && isLoading {
             isLoading = false
@@ -329,6 +330,7 @@ extension SVPinView : UICollectionViewDataSource, UICollectionViewDelegate, UICo
                 if !self.placeholder.isEmpty { self.setPlaceholder() }
             }
         }
+        
         
         return cell
     }
