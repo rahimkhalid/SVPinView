@@ -29,6 +29,7 @@ public class SVPinView: UIView {
     fileprivate var reuseIdentifier = "SVPinCell"
     fileprivate var isLoading = true
     fileprivate var password = [String]()
+    fileprivate var textFields = [SVPinField]()
     
     // MARK: - Public Properties -
     @IBInspectable public var pinLength:Int = 5
@@ -266,6 +267,16 @@ public class SVPinView: UIView {
             password.append(String(char))
             validateAndSendCallback()
         }
+    }
+    
+    @objc
+    public func makePinViewActive() {
+        if password.count == pinLength {
+            textFields.last?.becomeFirstResponder()
+        } else {
+            textFields[password.count].becomeFirstResponder()
+        }
+        
     }
 }
 
