@@ -291,10 +291,13 @@ extension SVPinView : UICollectionViewDataSource, UICollectionViewDelegate, UICo
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
-        let textField = cell.viewWithTag(100) as! SVPinField
-        let containerView = cell.viewWithTag(51)!
-        let underLine = cell.viewWithTag(50)!
-        let placeholderLabel = cell.viewWithTag(400) as! UILabel
+        guard let textField = cell.viewWithTag(100) as? SVPinField,
+            let containerView = cell.viewWithTag(51),
+            let underLine = cell.viewWithTag(50),
+            let placeholderLabel = cell.viewWithTag(400) as? UILabel else {
+                
+                return cell
+        }
         
         // Setting up textField
         textField.tag = 101 + indexPath.row
