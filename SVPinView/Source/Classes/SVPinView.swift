@@ -301,7 +301,11 @@ extension SVPinView : UICollectionViewDataSource, UICollectionViewDelegate, UICo
         
         // Setting up textField
         textField.tag = 101 + indexPath.row
-        textField.text = " "
+        if isContentTypeOneTimeCode && textField.tag == 101 {
+            textField.text = ""
+        } else {
+            textField.text = " "
+        }
         textField.layer.sublayerTransform = CATransform3DMakeTranslation(-4, 0, 0)
         textField.isSecureTextEntry = false
         textField.textColor = self.textColor
