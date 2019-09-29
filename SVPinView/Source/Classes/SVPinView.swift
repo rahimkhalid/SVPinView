@@ -137,7 +137,11 @@ public class SVPinView: UIView {
         // secure text after a bit
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             if textField.text == "" {
-                textField.text = " "
+                if self.isContentTypeOneTimeCode && textField.tag == 101 {
+                    textField.text = ""
+                } else {
+                    textField.text = " "
+                }
                 placeholderLabel.isHidden = false
                 textField.layer.sublayerTransform = CATransform3DMakeTranslation(-4, 0, 0)
             } else {
@@ -389,7 +393,11 @@ extension SVPinView : UITextFieldDelegate
         
         if text.count == 0 {
             textField.isSecureTextEntry = false
-            textField.text =  " "
+            if isContentTypeOneTimeCode && textField.tag == 101 {
+                textField.text = ""
+            } else {
+                textField.text = " "
+            }
             placeholderLabel.isHidden = false
         }
         
